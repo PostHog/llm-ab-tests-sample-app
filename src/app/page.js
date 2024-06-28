@@ -29,7 +29,7 @@ export default function Home() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email"
-        className="border p-2 mr-2"
+        className="border p-2 mr-2 text-black"
       />
       <button
         onClick={handleLogin}
