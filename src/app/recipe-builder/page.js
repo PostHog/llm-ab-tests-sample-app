@@ -15,6 +15,14 @@ export default function RecipeBuilder() {
     setEmail(searchParams.get('email') || '');
   }, [searchParams]);
 
+  const handleYesClick = () => {
+    // We add code here later
+  };
+
+  const handleNoClick = () => {
+    // We add code here later
+  };
+
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setError('');
@@ -67,8 +75,16 @@ export default function RecipeBuilder() {
         <div className="mt-4">
           <p className="mb-4 whitespace-pre">{recipe}</p>
           <p>Was this response helpful?</p>
-          <button className="bg-green-500 text-white px-4 py-2 rounded mr-2">Yes</button>
-          <button className="bg-red-500 text-white px-4 py-2 rounded">No</button>
+          <button 
+          className="bg-green-500 text-white px-4 py-2 rounded mr-2"
+          onClick={handleYesClick}>
+            Yes
+          </button>
+          <button 
+          className="bg-red-500 text-white px-4 py-2 rounded"
+          onClick={handleNoClick}>
+            No
+          </button>
         </div>
       )}
     </div>
