@@ -6,11 +6,13 @@ import { useRouter } from 'next/navigation';
 export default function RecipeBuilder() {
   const [ingredients, setIngredients] = useState('');
   const [recipe, setRecipe] = useState('');
-  const email = localStorage.getItem('email')
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
-
+  const [email, setEmail] = useState('');
+  useEffect(() => {
+    const email = setEmail(localStorage.getItem('email'));
+  }, [router]);
   const handleYesClick = () => {
     // We add code here later
   };
