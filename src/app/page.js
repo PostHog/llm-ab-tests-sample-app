@@ -7,19 +7,19 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const router = useRouter();
 
-  useEffect(() => {
-    // navigate to recipe builder if we are already logged in
-    if (localStorage.getItem('email')) {
-      router.push('/recipe-builder');
-    }
-  }, [router]);
-
   const handleLogin = () => {
     if (email) {
       localStorage.setItem('email', email);
       router.push('/recipe-builder');
     }
   };
+
+  useEffect(() => {
+    // navigate to recipe builder if we are already logged in
+    if (localStorage.getItem('email')) {
+      router.push('/recipe-builder');
+    }
+  }, [router]);
 
   return (
     <div className="container mx-auto p-4">
