@@ -1,19 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RecipeBuilder() {
   const [ingredients, setIngredients] = useState('');
   const [recipe, setRecipe] = useState('');
-  const [email, setEmail] = useState('');
+  const email = localStorage.getItem('email')
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    setEmail(searchParams.get('email') || '');
-  }, [searchParams]);
+  const router = useRouter();
 
   const handleYesClick = () => {
     // We add code here later
@@ -23,6 +19,11 @@ export default function RecipeBuilder() {
     // We add code here later
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('email');
+    router.push('/');
+  };
+  
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setError('');
@@ -62,9 +63,15 @@ export default function RecipeBuilder() {
         disabled={isSubmitting}
         className={`${
           isSubmitting ? 'bg-gray-500' : 'bg-blue-500'
-        } text-white px-4 py-2 rounded`}
+        } text-white px-4 py-2 rounded mr-2`}
       >
         {isSubmitting ? 'Submitting...' : 'Submit'}
+      </button>
+      <button
+        onClick={handleLogout}
+        className="bg-red-500 text-white px-4 py-2 rounded"
+      >
+        Log out
       </button>
       {error && (
         <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">

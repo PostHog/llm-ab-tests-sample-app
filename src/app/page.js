@@ -1,15 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const router = useRouter();
 
+  useEffect(() => {
+    // navigate to recipe builder if we are already logged in
+    if (localStorage.getItem('email')) {
+      router.push('/recipe-builder');
+    }
+  }, [router]);
+
   const handleLogin = () => {
     if (email) {
-      router.push(`/recipe-builder?email=${encodeURIComponent(email)}`);
+      localStorage.setItem('email', email);
+      router.push('/recipe-builder');
     }
   };
 
