@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function RecipeBuilder() {
@@ -10,6 +10,7 @@ export default function RecipeBuilder() {
   const [error, setError] = useState('');
   const router = useRouter();
   const [email, setEmail] = useState('');
+  
   useEffect(() => {
     const email = setEmail(localStorage.getItem('email'));
   }, [router]);
@@ -58,7 +59,7 @@ export default function RecipeBuilder() {
         value={ingredients}
         onChange={(e) => setIngredients(e.target.value)}
         placeholder="Enter your ingredients"
-        className="border p-2 mr-2"
+        className="border p-2 mr-2 text-black"
       />
       <button
         onClick={handleSubmit}
